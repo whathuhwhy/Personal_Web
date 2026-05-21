@@ -61,11 +61,23 @@ export function LetterField() {
   const mousePosRef = useRef<{ col: number; row: number } | null>(null);
   const cellsRef = useRef<Cell[]>(buildCells());
   const resolveStartRef = useRef<number>(0);
+  const charWidthRef = useRef(0);
   const reduce = useReducedMotion();
 
   useEffect(() => {
     modeRef.current = mode;
   }, [mode]);
+
+  useEffect(() => {
+    const pre = preRef.current;
+    if (!pre) return;
+    const span = document.createElement("span");
+    span.style.cssText = "visibility:hidden;position:absolute;font-size:18px;letter-spacing:4px;font-family:inherit";
+    span.textContent = "A";
+    pre.appendChild(span);
+    charWidthRef.current = span.getBoundingClientRect().width;
+    pre.removeChild(span);
+  }, []);
 
   // Skip animation if already seen this session
   useEffect(() => {
@@ -249,8 +261,11 @@ export function LetterField() {
         const pre = preRef.current;
         if (!pre) return;
         const rect = pre.getBoundingClientRect();
+        const cw = charWidthRef.current || rect.width / COLS;
+        const textWidth = cw * COLS;
+        const textLeft = rect.left + (rect.width - textWidth) / 2;
         mousePosRef.current = {
-          col: ((e.clientX - rect.left) / rect.width) * COLS,
+          col: ((e.clientX - textLeft) / textWidth) * COLS,
           row: ((e.clientY - rect.top) / rect.height) * ROWS,
         };
       }}
