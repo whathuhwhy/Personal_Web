@@ -3,7 +3,7 @@ node_modules/
 .next/
 *.tsbuildinfo
 
-# Claude Code / AI tooling
+# local tooling
 .claude
 .claude_cache
 .agents/
