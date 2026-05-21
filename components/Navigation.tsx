@@ -1,7 +1,6 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
-import { Terminal } from "lucide-react";
 
 const NAV_ITEMS = [
   { label: "Projects", href: "#projects" },
@@ -39,22 +38,20 @@ export default function Navigation({ onCmdK }: { onCmdK: () => void }) {
 
   return (
     <header
-      className="fixed top-0 left-0 right-0 z-40 transition-all duration-200"
+      className="fixed top-0 left-0 right-0 z-40"
       style={{
         backdropFilter: scrolled ? "blur(16px) saturate(1.5)" : "none",
-        background: scrolled
-          ? "rgba(10, 10, 10, 0.85)"
-          : "transparent",
+        background: scrolled ? "rgba(10, 10, 10, 0.85)" : "transparent",
         borderBottom: scrolled ? "1px solid var(--border)" : "1px solid transparent",
+        transition: "background 200ms ease-out, border-color 200ms ease-out",
       }}
     >
       {/* Scroll progress bar */}
       <div
-        className="absolute bottom-0 left-0 h-px transition-none"
+        className="absolute bottom-0 left-0 h-px"
         style={{
           width: `${progress}%`,
-          background: "var(--accent)",
-          boxShadow: "0 0 6px var(--accent-glow)",
+          background: "rgba(245,245,240,0.25)",
         }}
         aria-hidden="true"
       />
@@ -66,19 +63,20 @@ export default function Navigation({ onCmdK }: { onCmdK: () => void }) {
         {/* Logo */}
         <button
           onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
-          className="flex items-center gap-2 group"
+          className="flex items-center gap-2"
           aria-label="Scroll to top"
         >
-          <Terminal
-            size={16}
-            className="transition-colors duration-150"
-            style={{ color: "var(--accent)" }}
-          />
           <span
-            className="text-sm font-semibold tracking-tight"
-            style={{ color: "var(--text-primary)" }}
+            className="text-sm tracking-tight"
+            style={{
+              fontFamily: "var(--font-jetbrains-mono)",
+              color: "var(--text-4)",
+              letterSpacing: "0.1em",
+              textTransform: "uppercase",
+              fontSize: "10px",
+            }}
           >
-            daniel<span style={{ color: "var(--accent)" }}>.</span>dev
+            daniel<span style={{ color: "var(--text-3)" }}>.</span>dev
           </span>
         </button>
 
@@ -88,14 +86,7 @@ export default function Navigation({ onCmdK }: { onCmdK: () => void }) {
             <button
               key={item.href}
               onClick={() => scrollTo(item.href)}
-              className="px-3 py-1.5 text-sm rounded-md transition-colors duration-150 btn-press"
-              style={{ color: "var(--text-secondary)" }}
-              onMouseEnter={(e) =>
-                ((e.currentTarget as HTMLElement).style.color = "var(--text-primary)")
-              }
-              onMouseLeave={(e) =>
-                ((e.currentTarget as HTMLElement).style.color = "var(--text-secondary)")
-              }
+              className="nav-link px-3 py-1.5 text-sm rounded-md btn-press"
             >
               {item.label}
             </button>
@@ -106,10 +97,10 @@ export default function Navigation({ onCmdK }: { onCmdK: () => void }) {
             onClick={onCmdK}
             className="ml-2 flex items-center gap-1.5 px-3 py-1.5 rounded-md border text-xs btn-press"
             style={{
-              color: "var(--text-tertiary)",
+              color: "var(--text-4)",
               borderColor: "var(--border)",
-              background: "var(--surface)",
-              fontFamily: "var(--font-geist-mono)",
+              background: "transparent",
+              fontFamily: "var(--font-jetbrains-mono)",
             }}
             aria-label="Open command palette"
           >

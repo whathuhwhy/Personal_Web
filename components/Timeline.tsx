@@ -39,30 +39,34 @@ export default function Timeline() {
     <section
       id="experience"
       ref={ref}
-      className="px-6 py-24 max-w-6xl mx-auto w-full"
+      className="px-8 py-24 w-full"
       aria-labelledby="experience-heading"
     >
       {/* Section header */}
       <div
-        className="mb-12 transition-all duration-500"
+        className="mb-12"
         style={{
           opacity: visible ? 1 : 0,
-          transform: visible ? "translateY(0)" : "translateY(12px)",
+          transform: visible ? "translateY(0)" : "translateY(10px)",
+          transition: "opacity 400ms ease-out, transform 400ms ease-out",
         }}
       >
         <p
-          className="text-xs uppercase tracking-widest font-medium mb-2"
-          style={{
-            color: "var(--accent)",
-            fontFamily: "var(--font-geist-mono)",
-          }}
+          className="text-[10px] uppercase tracking-[0.3em] mb-2"
+          style={{ fontFamily: "var(--font-jetbrains-mono)", color: "var(--text-4)" }}
         >
-          Career
+          [02] · Career
         </p>
         <h2
           id="experience-heading"
-          className="text-4xl font-black"
-          style={{ letterSpacing: "-0.03em", color: "var(--text-primary)" }}
+          className="font-normal"
+          style={{
+            fontFamily: "var(--font-fraunces)",
+            fontSize: "clamp(28px, 4vw, 44px)",
+            lineHeight: 1.1,
+            letterSpacing: "-0.02em",
+            color: "var(--text-1)",
+          }}
         >
           Experience
         </h2>
@@ -78,10 +82,11 @@ export default function Timeline() {
       <div className="relative">
         {/* Vertical spine */}
         <div
-          className="absolute left-4 top-0 bottom-0 w-px transition-all duration-700"
+          className="absolute left-4 top-0 bottom-0 w-px"
           style={{
             background: "var(--border)",
             opacity: visible ? 1 : 0,
+            transition: "opacity 700ms ease-out",
             transitionDelay: "200ms",
           }}
           aria-hidden="true"
@@ -91,11 +96,12 @@ export default function Timeline() {
           {experience.map((entry, i) => (
             <div
               key={`${entry.company}-${i}`}
-              className="relative pl-12 pb-10 transition-all duration-500"
+              className="relative pl-12 pb-10"
               style={{
                 opacity: visible ? 1 : 0,
-                transform: visible ? "translateY(0)" : "translateY(16px)",
-                transitionDelay: `${i * 100 + 150}ms`,
+                transform: visible ? "translateY(0)" : "translateY(10px)",
+                transition: "opacity 400ms ease-out, transform 400ms ease-out",
+                transitionDelay: `${i * 80 + 150}ms`,
               }}
             >
               {/* Dot */}
@@ -154,7 +160,7 @@ export default function Timeline() {
                     className="text-xs shrink-0 mt-0.5"
                     style={{
                       color: "var(--text-tertiary)",
-                      fontFamily: "var(--font-geist-mono)",
+                      fontFamily: "var(--font-jetbrains-mono)",
                     }}
                   >
                     {entry.period}
@@ -189,7 +195,7 @@ export default function Timeline() {
                         background: "var(--surface-2)",
                         color: "var(--text-tertiary)",
                         border: "1px solid var(--border)",
-                        fontFamily: "var(--font-geist-mono)",
+                        fontFamily: "var(--font-jetbrains-mono)",
                       }}
                     >
                       {tag}

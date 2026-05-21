@@ -28,30 +28,34 @@ export default function ProjectShowcase() {
     <section
       id="projects"
       ref={ref}
-      className="px-6 py-24 max-w-6xl mx-auto w-full"
+      className="px-8 py-24 w-full"
       aria-labelledby="projects-heading"
     >
       {/* Section header */}
       <div
-        className="mb-12 transition-all duration-500"
+        className="mb-12"
         style={{
           opacity: visible ? 1 : 0,
-          transform: visible ? "translateY(0)" : "translateY(12px)",
+          transform: visible ? "translateY(0)" : "translateY(10px)",
+          transition: "opacity 400ms ease-out, transform 400ms ease-out",
         }}
       >
         <p
-          className="text-xs uppercase tracking-widest font-medium mb-2"
-          style={{
-            color: "var(--accent)",
-            fontFamily: "var(--font-geist-mono)",
-          }}
+          className="text-[10px] uppercase tracking-[0.3em] mb-2"
+          style={{ fontFamily: "var(--font-jetbrains-mono)", color: "var(--text-4)" }}
         >
-          Selected work
+          [01] · Selected work
         </p>
         <h2
           id="projects-heading"
-          className="text-4xl font-black"
-          style={{ letterSpacing: "-0.03em", color: "var(--text-primary)" }}
+          className="font-normal"
+          style={{
+            fontFamily: "var(--font-fraunces)",
+            fontSize: "clamp(28px, 4vw, 44px)",
+            lineHeight: 1.1,
+            letterSpacing: "-0.02em",
+            color: "var(--text-1)",
+          }}
         >
           Projects
         </h2>
@@ -68,10 +72,10 @@ export default function ProjectShowcase() {
         {projects.map((project, i) => (
           <div
             key={project.id}
-            className="transition-all duration-500"
             style={{
               opacity: visible ? 1 : 0,
-              transform: visible ? "translateY(0)" : "translateY(20px)",
+              transform: visible ? "translateY(0)" : "translateY(10px)",
+              transition: "opacity 400ms ease-out, transform 400ms ease-out",
               transitionDelay: `${i * 80}ms`,
             }}
           >

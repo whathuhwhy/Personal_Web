@@ -5,15 +5,6 @@ import { AnimatePresence, motion } from "framer-motion";
 import { ExternalLink, TrendingUp, Cpu } from "lucide-react";
 import { GithubIcon } from "@/components/icons";
 import type { Project, ProjectView } from "@/lib/data";
-import BLETrackerArch from "@/components/architectures/BLETrackerArch";
-import KampongSGArch from "@/components/architectures/KampongSGArch";
-import KateCartArch from "@/components/architectures/KateCartArch";
-
-const ARCH_MAP: Record<string, React.ComponentType> = {
-  BLETrackerArch,
-  KampongSGArch,
-  KateCartArch,
-};
 
 const PANEL_VARIANTS = {
   enter: (dir: number) => ({
@@ -42,8 +33,6 @@ export default function ProjectCard({ project }: { project: Project }) {
     },
     [view]
   );
-
-  const ArchComponent = ARCH_MAP[project.architectureComponent];
 
   return (
     <article
@@ -80,18 +69,7 @@ export default function ProjectCard({ project }: { project: Project }) {
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label={`${project.title} GitHub`}
-                className="p-1.5 rounded-md border btn-press"
-                style={{
-                  color: "var(--text-tertiary)",
-                  borderColor: "var(--border)",
-                  transition: "color 150ms ease-out",
-                }}
-                onMouseEnter={(e) =>
-                  ((e.currentTarget as HTMLElement).style.color = "var(--text-primary)")
-                }
-                onMouseLeave={(e) =>
-                  ((e.currentTarget as HTMLElement).style.color = "var(--text-tertiary)")
-                }
+                className="icon-link p-1.5 rounded-md border btn-press"
               >
                 <GithubIcon width={14} height={14} />
               </a>
@@ -102,18 +80,7 @@ export default function ProjectCard({ project }: { project: Project }) {
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label={`${project.title} live site`}
-                className="p-1.5 rounded-md border btn-press"
-                style={{
-                  color: "var(--text-tertiary)",
-                  borderColor: "var(--border)",
-                  transition: "color 150ms ease-out",
-                }}
-                onMouseEnter={(e) =>
-                  ((e.currentTarget as HTMLElement).style.color = "var(--text-primary)")
-                }
-                onMouseLeave={(e) =>
-                  ((e.currentTarget as HTMLElement).style.color = "var(--text-tertiary)")
-                }
+                className="icon-link p-1.5 rounded-md border btn-press"
               >
                 <ExternalLink size={14} />
               </a>
@@ -131,7 +98,7 @@ export default function ProjectCard({ project }: { project: Project }) {
                 background: "var(--surface-2)",
                 color: "var(--text-tertiary)",
                 border: "1px solid var(--border)",
-                fontFamily: "var(--font-geist-mono)",
+                fontFamily: "var(--font-jetbrains-mono)",
               }}
             >
               {tag}
@@ -187,45 +154,13 @@ export default function ProjectCard({ project }: { project: Project }) {
               className="absolute inset-0 px-6 py-5 overflow-y-auto"
             >
               <div className="space-y-5">
-                {/* Problem */}
-                <div>
-                  <p
-                    className="text-xs font-semibold uppercase tracking-wider mb-1.5"
-                    style={{
-                      color: "var(--text-tertiary)",
-                      fontFamily: "var(--font-geist-mono)",
-                    }}
-                  >
-                    Problem
-                  </p>
-                  <p className="text-sm leading-relaxed" style={{ color: "var(--text-secondary)" }}>
-                    {project.impact.problem}
-                  </p>
-                </div>
-
-                {/* Solution */}
-                <div>
-                  <p
-                    className="text-xs font-semibold uppercase tracking-wider mb-1.5"
-                    style={{
-                      color: "var(--text-tertiary)",
-                      fontFamily: "var(--font-geist-mono)",
-                    }}
-                  >
-                    Solution
-                  </p>
-                  <p className="text-sm leading-relaxed" style={{ color: "var(--text-secondary)" }}>
-                    {project.impact.solution}
-                  </p>
-                </div>
-
                 {/* Metrics */}
                 <div>
                   <p
                     className="text-xs font-semibold uppercase tracking-wider mb-2"
                     style={{
                       color: "var(--text-tertiary)",
-                      fontFamily: "var(--font-geist-mono)",
+                      fontFamily: "var(--font-jetbrains-mono)",
                     }}
                   >
                     Hard metrics
@@ -256,6 +191,38 @@ export default function ProjectCard({ project }: { project: Project }) {
                     ))}
                   </div>
                 </div>
+
+                {/* Problem */}
+                <div>
+                  <p
+                    className="text-xs font-semibold uppercase tracking-wider mb-1.5"
+                    style={{
+                      color: "var(--text-tertiary)",
+                      fontFamily: "var(--font-jetbrains-mono)",
+                    }}
+                  >
+                    Problem
+                  </p>
+                  <p className="text-sm leading-relaxed" style={{ color: "var(--text-secondary)" }}>
+                    {project.impact.problem}
+                  </p>
+                </div>
+
+                {/* Solution */}
+                <div>
+                  <p
+                    className="text-xs font-semibold uppercase tracking-wider mb-1.5"
+                    style={{
+                      color: "var(--text-tertiary)",
+                      fontFamily: "var(--font-jetbrains-mono)",
+                    }}
+                  >
+                    Solution
+                  </p>
+                  <p className="text-sm leading-relaxed" style={{ color: "var(--text-secondary)" }}>
+                    {project.impact.solution}
+                  </p>
+                </div>
               </div>
             </motion.div>
           ) : (
@@ -272,17 +239,22 @@ export default function ProjectCard({ project }: { project: Project }) {
               transition={{ duration: 0.18, ease: [0.23, 1, 0.32, 1] }}
               className="absolute inset-0 px-4 py-5 flex items-center justify-center"
             >
-              <div className="w-full">
+              <div className="w-full flex flex-col items-center justify-center gap-3 py-8">
                 <p
-                  className="text-xs mb-4 text-center"
+                  className="text-xs uppercase tracking-[0.3em]"
                   style={{
-                    color: "var(--text-tertiary)",
-                    fontFamily: "var(--font-geist-mono)",
+                    color: "var(--text-4)",
+                    fontFamily: "var(--font-jetbrains-mono)",
                   }}
                 >
-                  // data flow pipeline
+                  TBD
                 </p>
-                {ArchComponent && <ArchComponent />}
+                <p
+                  className="text-xs"
+                  style={{ color: "var(--text-4)", fontFamily: "var(--font-jetbrains-mono)" }}
+                >
+                  Architecture diagram coming soon
+                </p>
               </div>
             </motion.div>
           )}

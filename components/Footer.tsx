@@ -1,11 +1,9 @@
-"use client";
-
-import { Mail, Download, Terminal } from "lucide-react";
+import { Mail, Download } from "lucide-react";
 import { GithubIcon, LinkedinIcon } from "@/components/icons";
 
 const LINKS = [
-  { href: "https://github.com/danielnapitu", icon: GithubIcon, label: "GitHub" },
-  { href: "https://linkedin.com/in/danielnapitu", icon: LinkedinIcon, label: "LinkedIn" },
+  { href: "https://github.com/whathuhwhy", icon: GithubIcon, label: "GitHub" },
+  { href: "https://www.linkedin.com/in/daniel-napitu/", icon: LinkedinIcon, label: "LinkedIn" },
   { href: "mailto:daniel.parsaulian.napitu@gmail.com", icon: Mail, label: "Email" },
 ];
 
@@ -20,13 +18,12 @@ export default function Footer() {
       <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-8">
         {/* Left: branding + tagline */}
         <div>
-          <div className="flex items-center gap-2 mb-2">
-            <Terminal size={16} style={{ color: "var(--accent)" }} />
+          <div className="mb-2">
             <span
-              className="text-sm font-semibold"
-              style={{ color: "var(--text-primary)" }}
+              className="text-[11px] uppercase tracking-[0.2em]"
+              style={{ fontFamily: "var(--font-jetbrains-mono)", color: "var(--text-4)" }}
             >
-              daniel<span style={{ color: "var(--accent)" }}>.</span>dev
+              daniel<span style={{ color: "var(--text-3)" }}>.</span>dev
             </span>
           </div>
           <p className="text-sm" style={{ color: "var(--text-tertiary)" }}>
@@ -34,10 +31,7 @@ export default function Footer() {
           </p>
           <p
             className="text-xs mt-1"
-            style={{
-              color: "var(--text-tertiary)",
-              fontFamily: "var(--font-geist-mono)",
-            }}
+            style={{ color: "var(--text-tertiary)", fontFamily: "var(--font-jetbrains-mono)" }}
           >
             daniel.parsaulian.napitu@gmail.com
           </p>
@@ -52,26 +46,15 @@ export default function Footer() {
               target={href.startsWith("mailto") ? undefined : "_blank"}
               rel="noopener noreferrer"
               aria-label={label}
-              className="flex items-center gap-2 px-3 py-2 rounded-lg border text-sm btn-press"
-              style={{
-                color: "var(--text-secondary)",
-                borderColor: "var(--border)",
-                background: "var(--surface)",
-                transition: "color 150ms ease-out, border-color 150ms ease-out",
-              }}
-              onMouseEnter={(e) => {
-                const el = e.currentTarget as HTMLAnchorElement;
-                el.style.color = "var(--text-primary)";
-                el.style.borderColor = "var(--border-2)";
-              }}
-              onMouseLeave={(e) => {
-                const el = e.currentTarget as HTMLAnchorElement;
-                el.style.color = "var(--text-secondary)";
-                el.style.borderColor = "var(--border)";
-              }}
+              className="icon-link flex items-center gap-2 px-3 py-2 rounded-lg border btn-press"
             >
               <Icon size={14} />
-              <span>{label}</span>
+              <span
+                className="text-[10px] uppercase tracking-[0.2em]"
+                style={{ fontFamily: "var(--font-jetbrains-mono)" }}
+              >
+                {label}
+              </span>
             </a>
           ))}
 
@@ -80,8 +63,8 @@ export default function Footer() {
             download="daniel-napitu-resume.pdf"
             className="flex items-center gap-2 px-4 py-2 rounded-lg text-sm font-semibold btn-press"
             style={{
-              background: "var(--accent)",
-              color: "#000",
+              background: "var(--text-1)",
+              color: "var(--bg)",
             }}
             aria-label="Download résumé PDF"
           >
@@ -97,19 +80,13 @@ export default function Footer() {
       >
         <p
           className="text-xs"
-          style={{
-            color: "var(--text-tertiary)",
-            fontFamily: "var(--font-geist-mono)",
-          }}
+          style={{ color: "var(--text-tertiary)", fontFamily: "var(--font-jetbrains-mono)" }}
         >
           © 2025 Daniel Napitu · Built with Next.js + Tailwind
         </p>
         <p
           className="text-xs"
-          style={{
-            color: "var(--text-tertiary)",
-            fontFamily: "var(--font-geist-mono)",
-          }}
+          style={{ color: "var(--text-tertiary)", fontFamily: "var(--font-jetbrains-mono)" }}
         >
           Press{" "}
           <kbd

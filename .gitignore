@@ -4,3 +4,8 @@ node_modules
 .claude
 
 .claude_cache
+
+node_modules/
+.next/
+
+*.tsbuildinfo

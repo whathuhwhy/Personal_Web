@@ -148,7 +148,7 @@ export default function CommandPalette({ open, onClose }: Props) {
                 className="flex-1 bg-transparent text-sm outline-none"
                 style={{
                   color: "var(--text-primary)",
-                  fontFamily: "var(--font-geist-sans)",
+                  fontFamily: "var(--font-jetbrains-mono)",
                 }}
                 aria-label="Search commands"
                 aria-autocomplete="list"
@@ -159,7 +159,7 @@ export default function CommandPalette({ open, onClose }: Props) {
                 style={{
                   color: "var(--text-tertiary)",
                   borderColor: "var(--border)",
-                  fontFamily: "var(--font-geist-mono)",
+                  fontFamily: "var(--font-jetbrains-mono)",
                   background: "var(--surface-2)",
                 }}
               >
@@ -202,9 +202,9 @@ export default function CommandPalette({ open, onClose }: Props) {
                       <span
                         className="p-1.5 rounded-md border"
                         style={{
-                          color: isActive ? "var(--accent)" : "var(--text-tertiary)",
-                          borderColor: isActive ? "rgba(0,255,136,0.2)" : "var(--border)",
-                          background: isActive ? "var(--accent-dim)" : "transparent",
+                          color: isActive ? "var(--text-primary)" : "var(--text-tertiary)",
+                          borderColor: isActive ? "var(--border-2)" : "var(--border)",
+                          background: isActive ? "var(--surface-2)" : "transparent",
                           transition: "color 100ms, border-color 100ms, background 100ms",
                         }}
                       >
@@ -224,14 +224,14 @@ export default function CommandPalette({ open, onClose }: Props) {
                             className="text-xs"
                             style={{
                               color: "var(--text-tertiary)",
-                              fontFamily: "var(--font-geist-mono)",
+                              fontFamily: "var(--font-jetbrains-mono)",
                             }}
                           >
                             {item.shortcut}
                           </span>
                         )}
                         {isActive && (
-                          <ArrowRight size={12} style={{ color: "var(--accent)" }} />
+                          <ArrowRight size={12} style={{ color: "var(--text-tertiary)" }} />
                         )}
                       </div>
                     </li>
@@ -259,7 +259,7 @@ export default function CommandPalette({ open, onClose }: Props) {
                   <kbd
                     className="px-1.5 py-0.5 rounded border"
                     style={{
-                      fontFamily: "var(--font-geist-mono)",
+                      fontFamily: "var(--font-jetbrains-mono)",
                       borderColor: "var(--border)",
                       background: "var(--surface-2)",
                     }}

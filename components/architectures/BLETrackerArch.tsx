@@ -23,8 +23,8 @@ export default function BLETrackerArch() {
         <style>{`
           .ble-node { fill: #111; stroke: #2a2a2a; stroke-width: 1; rx: 8; }
           .ble-label { font-family: var(--font-geist-sans, system-ui); font-size: 11px; fill: #fafafa; }
-          .ble-sub { font-family: var(--font-geist-mono, monospace); font-size: 9px; fill: #555; }
-          .ble-proto { font-family: var(--font-geist-mono, monospace); font-size: 8.5px; fill: #00ff88; }
+          .ble-sub { font-family: var(--font-jetbrains-mono, monospace); font-size: 9px; fill: #555; }
+          .ble-proto { font-family: var(--font-jetbrains-mono, monospace); font-size: 8.5px; fill: #00ff88; }
           .ble-edge { stroke: #00ff88; stroke-width: 1.5; fill: none; stroke-dasharray: 6 3; marker-end: url(#ble-arrow); }
         `}</style>
       </defs>

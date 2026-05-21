@@ -16,8 +16,8 @@ export default function KateCartArch() {
         <style>{`
           .kc-node { fill: #111; stroke: #2a2a2a; stroke-width: 1; }
           .kc-label { font-family: var(--font-geist-sans, system-ui); font-size: 11px; fill: #fafafa; }
-          .kc-sub { font-family: var(--font-geist-mono, monospace); font-size: 9px; fill: #555; }
-          .kc-proto { font-family: var(--font-geist-mono, monospace); font-size: 8.5px; fill: #00ff88; }
+          .kc-sub { font-family: var(--font-jetbrains-mono, monospace); font-size: 9px; fill: #555; }
+          .kc-proto { font-family: var(--font-jetbrains-mono, monospace); font-size: 8.5px; fill: #00ff88; }
           .kc-edge { stroke: #00ff88; stroke-width: 1.5; fill: none; stroke-dasharray: 6 3; marker-end: url(#kc-arrow); }
         `}</style>
       </defs>

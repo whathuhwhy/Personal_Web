@@ -16,8 +16,8 @@ export default function KampongSGArch() {
         <style>{`
           .ksg-node { fill: #111; stroke: #2a2a2a; stroke-width: 1; }
           .ksg-label { font-family: var(--font-geist-sans, system-ui); font-size: 11px; fill: #fafafa; }
-          .ksg-sub { font-family: var(--font-geist-mono, monospace); font-size: 9px; fill: #555; }
-          .ksg-proto { font-family: var(--font-geist-mono, monospace); font-size: 8.5px; fill: #00ff88; }
+          .ksg-sub { font-family: var(--font-jetbrains-mono, monospace); font-size: 9px; fill: #555; }
+          .ksg-proto { font-family: var(--font-jetbrains-mono, monospace); font-size: 8.5px; fill: #00ff88; }
           .ksg-edge { stroke: #00ff88; stroke-width: 1.5; fill: none; stroke-dasharray: 6 3; marker-end: url(#ksg-arrow); }
         `}</style>
       </defs>
