@@ -3,7 +3,7 @@ import { LetterField } from "./LetterField";
 export function Intro() {
   return (
     <section
-      className="relative min-h-screen w-full flex flex-col px-8 py-7 bg-[#0a0a0a] text-[#f5f5f0]"
+      className="relative min-h-screen w-full overflow-x-hidden flex flex-col px-8 py-7 bg-[#0a0a0a] text-[#f5f5f0]"
       aria-label="Introduction"
     >
       {/* Top bar */}
