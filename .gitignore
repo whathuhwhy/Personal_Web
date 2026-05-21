@@ -1,11 +1,15 @@
 
-node_modules
-
-.claude
-
-.claude_cache
-
 node_modules/
 .next/
-
 *.tsbuildinfo
+
+# Claude Code / AI tooling
+.claude
+.claude_cache
+.agents/
+.hallmark/
+skills-lock.json
+CLAUDE.md
+AGENTS.md
+INTRO_SPEC.md
+design.md

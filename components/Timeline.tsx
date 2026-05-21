@@ -1,10 +1,5 @@
 "use client";
 
-/* Hallmark · genre: atmospheric · macrostructure: Long Document (section rhythm)
- * design-system: design.md · redesigned: 2026-05-21
- * pre-emit critique: P5 H5 E5 S4 R5 V5
- */
-
 import { useRef, useEffect, useState } from "react";
 import { experience } from "@/lib/data";
 

@@ -1,9 +1,5 @@
 "use client";
 
-/* Hallmark · genre: atmospheric · macrostructure: Split Studio · tone: technical · anchor hue: phosphor-green
- * pre-emit critique: P5 H4 E4 S4 R5 V4
- */
-
 import { useState, useCallback } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import { ExternalLink, TrendingUp, Cpu } from "lucide-react";
