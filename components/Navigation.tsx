@@ -41,7 +41,7 @@ export default function Navigation({ onCmdK }: { onCmdK: () => void }) {
       className="fixed top-0 left-0 right-0 z-40"
       style={{
         backdropFilter: scrolled ? "blur(16px) saturate(1.5)" : "none",
-        background: scrolled ? "rgba(10, 10, 10, 0.85)" : "transparent",
+        background: scrolled ? "color-mix(in oklch, var(--bg) 90%, transparent)" : "transparent",
         borderBottom: scrolled ? "1px solid var(--border)" : "1px solid transparent",
         transition: "background 200ms ease-out, border-color 200ms ease-out",
       }}
@@ -51,7 +51,7 @@ export default function Navigation({ onCmdK }: { onCmdK: () => void }) {
         className="absolute bottom-0 left-0 h-px"
         style={{
           width: `${progress}%`,
-          background: "rgba(245,245,240,0.25)",
+          background: "color-mix(in oklch, var(--text-1) 25%, transparent)",
         }}
         aria-hidden="true"
       />

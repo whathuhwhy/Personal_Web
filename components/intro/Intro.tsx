@@ -3,7 +3,7 @@ import { LetterField } from "./LetterField";
 export function Intro() {
   return (
     <section
-      className="relative min-h-screen w-full overflow-x-hidden flex flex-col bg-[#0a0a0a] text-[#f5f5f0]"
+      className="relative min-h-screen w-full overflow-x-hidden flex flex-col bg-[var(--bg)] text-[var(--text-1)]"
       aria-label="Introduction"
     >
       <div className="max-w-6xl mx-auto w-full flex flex-col flex-1 px-8 py-7">
@@ -32,11 +32,8 @@ export function Intro() {
           </p>
           <hr className="w-16 border-neutral-700 my-6" />
           <div className="w-full text-left">
-            <p className="font-mono text-[10px] tracking-[0.3em] uppercase text-neutral-600 mb-2">
-              [00] · About
-            </p>
             <p
-              className="font-display text-[#d4d4d0] font-normal leading-[1.3] tracking-[-0.01em] max-w-[640px]"
+              className="font-display text-[var(--text-2)] font-normal leading-[1.3] tracking-[-0.01em] max-w-[640px]"
               style={{ fontSize: "clamp(28px, 4vw, 44px)" }}
             >
               I build systems that scale &amp; interfaces that breathe.
@@ -48,7 +45,7 @@ export function Intro() {
         <div className="flex flex-col items-center gap-3.5">
           <p
             data-hint=""
-            className="font-mono text-[11px] tracking-[0.4em] uppercase text-neutral-600 animate-pulse"
+            className="font-mono text-[11px] tracking-[0.4em] uppercase text-neutral-600 hint-pulse"
           >
             tap anywhere
           </p>

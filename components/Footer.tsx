@@ -82,7 +82,7 @@ export default function Footer() {
           className="text-xs"
           style={{ color: "var(--text-tertiary)", fontFamily: "var(--font-jetbrains-mono)" }}
         >
-          © 2025 Daniel Napitu · Built with Next.js + Tailwind
+          © 2026 Daniel Napitu · Built with Next.js + Tailwind
         </p>
         <p
           className="text-xs"

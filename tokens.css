@@ -1,0 +1,70 @@
+/* Hallmark · genre: atmospheric · macrostructure: Marquee Hero · tone: technical
+ * theme: custom · paper-band: dark · display-style: italic-serif · accent-hue: chromatic-green
+ * design-system: design.md · Generated: 2026-05-21
+ */
+
+:root {
+  /* ── Surface ── */
+  --color-paper:       oklch(6% 0.005 250);
+  --color-paper-2:     oklch(9% 0.005 250);
+  --color-paper-3:     oklch(11% 0.005 250);
+
+  /* ── Rules / borders ── */
+  --color-rule:        oklch(14% 0.005 250);
+  --color-rule-2:      oklch(18% 0.005 250);
+  --color-rule-subtle: oklch(11% 0.005 250);
+
+  /* ── Ink ── */
+  --color-ink:   oklch(98% 0.002 250);
+  --color-ink-2: oklch(96% 0.003 85);
+  --color-ink-3: oklch(87% 0.003 85);
+  --color-ink-4: oklch(55% 0.003 250);
+  --color-ink-5: oklch(36% 0.003 250);
+
+  /* ── Accent ── */
+  --color-accent:        oklch(91% 0.23 157);
+  --color-accent-dim:    color-mix(in oklch, oklch(91% 0.23 157) 8%, transparent);
+  --color-accent-glow:   color-mix(in oklch, oklch(91% 0.23 157) 30%, transparent);
+  --color-accent-border: color-mix(in oklch, oklch(91% 0.23 157) 15%, transparent);
+
+  /* ── Category colours ── */
+  --color-data:     oklch(66% 0.18 215);
+  --color-strategy: oklch(67% 0.20 296);
+
+  /* ── Focus ── */
+  --color-focus: oklch(96% 0.003 85);
+
+  /* ── Typography ── */
+  --font-display: var(--font-fraunces), Georgia, serif;
+  --font-body:    var(--font-geist-sans), system-ui, sans-serif;
+  --font-mono:    var(--font-jetbrains-mono), "Geist Mono", monospace;
+
+  /* ── Spacing (4-pt scale) ── */
+  --space-3xs: 0.25rem;   /*  4px */
+  --space-2xs: 0.5rem;    /*  8px */
+  --space-xs:  0.75rem;   /* 12px */
+  --space-sm:  1rem;      /* 16px */
+  --space-md:  1.5rem;    /* 24px */
+  --space-lg:  2rem;      /* 32px */
+  --space-xl:  3rem;      /* 48px */
+  --space-2xl: 4.5rem;    /* 72px */
+  --space-3xl: 6rem;      /* 96px */
+
+  /* ── Easings ── */
+  --ease-out:     cubic-bezier(0.23, 1, 0.32, 1);
+  --ease-in-out:  cubic-bezier(0.77, 0, 0.175, 1);
+  --ease-drawer:  cubic-bezier(0.32, 0.72, 0, 1);
+  --ease-resolve: cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-snap:    cubic-bezier(0.23, 1, 0.32, 1);
+
+  /* ── Durations ── */
+  --dur-short: 150ms;
+  --dur-mid:   220ms;
+  --dur-long:  400ms;
+
+  /* ── Radii ── */
+  --radius-sm:   3px;
+  --radius-md:   8px;
+  --radius-lg:   12px;
+  --radius-pill: 999px;
+}

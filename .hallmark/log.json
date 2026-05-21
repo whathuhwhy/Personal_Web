@@ -1,0 +1,28 @@
+[
+  {
+    "date": "2026-05-21",
+    "macrostructure": "Long Document (section)",
+    "theme": "custom",
+    "theme_axes": "dark / italic-serif / chromatic-green",
+    "enrichment": "none",
+    "brief": "Daniel Napitu portfolio — experience section redesign · spine+dots+cards → document rhythm · left-border type accent · plain prose highlights · section-level entrance only"
+  },
+  {
+    "date": "2026-05-21",
+    "macrostructure": "Marquee Hero",
+    "theme": "custom",
+    "theme_axes": "dark / italic-serif / chromatic-green",
+    "vibe": "atmospheric dark phosphor-green technical portfolio",
+    "enrichment": "LetterField (retained custom RAF animation)",
+    "scope": "app",
+    "brief": "Daniel Napitu portfolio — full site redesign · atmospheric · OKLCH token system · eyebrows removed · per-card scroll-fades removed · glow shadows removed · color-mix() alpha discipline"
+  },
+  {
+    "date": "2026-05-21",
+    "macrostructure": "Split Studio",
+    "theme": "custom-preserve (dark · phosphor-green · Fraunces + JetBrains Mono)",
+    "theme_axes": "dark / italic-serif / chromatic-other",
+    "enrichment": "none",
+    "brief": "Daniel Napitu portfolio · projects showcase section redesign"
+  }
+]

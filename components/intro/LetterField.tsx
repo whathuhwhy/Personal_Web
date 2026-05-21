@@ -258,7 +258,7 @@ export function LetterField() {
 
   return (
     <div
-      className="relative w-full overflow-hidden cursor-pointer outline-none focus-visible:ring-1 focus-visible:ring-neutral-700 focus-visible:ring-offset-4 focus-visible:ring-offset-[#0a0a0a] rounded"
+      className="relative w-full overflow-hidden cursor-pointer outline-none focus-visible:ring-1 focus-visible:ring-neutral-400 focus-visible:ring-offset-4 focus-visible:ring-offset-[var(--bg)] rounded"
       onClick={handleClick}
       onMouseMove={(e) => {
         const pre = preRef.current;

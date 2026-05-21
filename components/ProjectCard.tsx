@@ -1,5 +1,9 @@
 "use client";
 
+/* Hallmark · genre: atmospheric · macrostructure: Split Studio · tone: technical · anchor hue: phosphor-green
+ * pre-emit critique: P5 H4 E4 S4 R5 V4
+ */
+
 import { useState, useCallback } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import { ExternalLink, TrendingUp, Cpu } from "lucide-react";
@@ -7,21 +11,18 @@ import { GithubIcon } from "@/components/icons";
 import type { Project, ProjectView } from "@/lib/data";
 
 const PANEL_VARIANTS = {
-  enter: (dir: number) => ({
-    opacity: 0,
-    y: dir * 10,
-  }),
-  center: {
-    opacity: 1,
-    y: 0,
-  },
-  exit: (dir: number) => ({
-    opacity: 0,
-    y: dir * -10,
-  }),
+  enter: (dir: number) => ({ opacity: 0, y: dir * 6 }),
+  center: { opacity: 1, y: 0 },
+  exit: (dir: number) => ({ opacity: 0, y: dir * -6 }),
 };
 
-export default function ProjectCard({ project }: { project: Project }) {
+export default function ProjectCard({
+  project,
+  index,
+}: {
+  project: Project;
+  index: number;
+}) {
   const [view, setView] = useState<ProjectView>("impact");
   const [dir, setDir] = useState(1);
 
@@ -34,231 +35,297 @@ export default function ProjectCard({ project }: { project: Project }) {
     [view]
   );
 
+  const num = String(index + 1).padStart(2, "0");
+
   return (
     <article
-      className="rounded-xl border flex flex-col overflow-hidden"
-      style={{
-        background: "var(--surface)",
-        borderColor: "var(--border)",
-      }}
       aria-label={`Project: ${project.title}`}
+      className="py-10 border-b"
+      style={{ borderColor: "var(--border)" }}
     >
-      {/* Card header */}
-      <div className="px-6 pt-6 pb-4 border-b" style={{ borderColor: "var(--border)" }}>
-        <div className="flex items-start justify-between gap-4">
+      <div className="grid grid-cols-1 md:grid-cols-5 gap-6 md:gap-12 items-start">
+
+        {/* LEFT — project identity */}
+        <div className="md:col-span-2 flex flex-col gap-4">
+
+          {/* Decorative numeral + title */}
           <div>
+            <span
+              aria-hidden="true"
+              style={{
+                display: "block",
+                fontFamily: "var(--font-fraunces)",
+                fontSize: "clamp(2.5rem, 4vw, 3.5rem)",
+                lineHeight: 1,
+                color: "var(--text-4)",
+                letterSpacing: "-0.04em",
+                marginBottom: "0.5rem",
+                fontWeight: "normal",
+              }}
+            >
+              {num}
+            </span>
+
             <h3
-              className="text-lg font-bold"
-              style={{ color: "var(--text-primary)" }}
+              style={{
+                fontFamily: "var(--font-fraunces)",
+                fontSize: "clamp(1.1rem, 2vw, 1.35rem)",
+                lineHeight: 1.25,
+                letterSpacing: "-0.01em",
+                color: "var(--text-1)",
+                fontWeight: "normal",
+                marginBottom: "0.3rem",
+                overflowWrap: "anywhere",
+                minWidth: 0,
+              }}
             >
               {project.title}
             </h3>
+
             <p
-              className="text-sm mt-0.5"
-              style={{ color: "var(--text-secondary)" }}
+              style={{
+                fontFamily: "var(--font-jetbrains-mono)",
+                fontSize: "0.65rem",
+                textTransform: "uppercase",
+                letterSpacing: "0.12em",
+                color: "var(--text-4)",
+                lineHeight: 1.6,
+              }}
             >
               {project.subtitle}
             </p>
           </div>
 
-          {/* External links */}
-          <div className="flex items-center gap-2 shrink-0 mt-0.5">
-            {project.githubUrl && (
-              <a
-                href={project.githubUrl}
-                target="_blank"
-                rel="noopener noreferrer"
-                aria-label={`${project.title} GitHub`}
-                className="icon-link p-1.5 rounded-md border btn-press"
+          {/* Tags */}
+          <div className="flex flex-wrap gap-1.5">
+            {project.tags.map((tag) => (
+              <span
+                key={tag}
+                style={{
+                  fontFamily: "var(--font-jetbrains-mono)",
+                  fontSize: "0.6rem",
+                  textTransform: "uppercase",
+                  letterSpacing: "0.08em",
+                  padding: "0.2rem 0.45rem",
+                  borderRadius: "3px",
+                  background: "var(--surface-2)",
+                  color: "var(--text-tertiary)",
+                  border: "1px solid var(--border)",
+                }}
               >
-                <GithubIcon width={14} height={14} />
-              </a>
-            )}
-            {project.liveUrl && (
-              <a
-                href={project.liveUrl}
-                target="_blank"
-                rel="noopener noreferrer"
-                aria-label={`${project.title} live site`}
-                className="icon-link p-1.5 rounded-md border btn-press"
-              >
-                <ExternalLink size={14} />
-              </a>
-            )}
+                {tag}
+              </span>
+            ))}
           </div>
-        </div>
 
-        {/* Tags */}
-        <div className="flex flex-wrap gap-1.5 mt-3">
-          {project.tags.map((tag) => (
-            <span
-              key={tag}
-              className="px-2 py-0.5 rounded text-xs"
-              style={{
-                background: "var(--surface-2)",
-                color: "var(--text-tertiary)",
-                border: "1px solid var(--border)",
-                fontFamily: "var(--font-jetbrains-mono)",
-              }}
-            >
-              {tag}
-            </span>
-          ))}
-        </div>
-      </div>
-
-      {/* Toggle switcher */}
-      <div
-        className="flex items-center gap-1 px-6 py-3 border-b"
-        style={{ borderColor: "var(--border)" }}
-        role="tablist"
-        aria-label="Project view toggle"
-      >
-        {(["impact", "architecture"] as const).map((v) => (
-          <button
-            key={v}
-            role="tab"
-            aria-selected={view === v}
-            aria-controls={`panel-${project.id}-${v}`}
-            onClick={() => switchView(v)}
-            className="relative flex items-center gap-1.5 px-3 py-1.5 rounded-md text-xs font-medium btn-press"
-            style={{
-              color: view === v ? "var(--text-primary)" : "var(--text-tertiary)",
-              background: view === v ? "var(--surface-2)" : "transparent",
-              border: `1px solid ${view === v ? "var(--border-2)" : "transparent"}`,
-              transition:
-                "color 150ms ease-out, background 150ms ease-out, border-color 150ms ease-out",
-            }}
-          >
-            {v === "impact" ? <TrendingUp size={12} /> : <Cpu size={12} />}
-            {v === "impact" ? "Product Impact" : "System Architecture"}
-          </button>
-        ))}
-      </div>
-
-      {/* Panel content */}
-      <div className="relative flex-1 overflow-hidden" style={{ minHeight: 240 }}>
-        <AnimatePresence custom={dir} mode="wait">
-          {view === "impact" ? (
-            <motion.div
-              key="impact"
-              id={`panel-${project.id}-impact`}
-              role="tabpanel"
-              aria-label="Product impact"
-              custom={dir}
-              variants={PANEL_VARIANTS}
-              initial="enter"
-              animate="center"
-              exit="exit"
-              transition={{ duration: 0.18, ease: [0.23, 1, 0.32, 1] }}
-              className="absolute inset-0 px-6 py-5 overflow-y-auto"
-            >
-              <div className="space-y-5">
-                {/* Metrics */}
-                <div>
-                  <p
-                    className="text-xs font-semibold uppercase tracking-wider mb-2"
-                    style={{
-                      color: "var(--text-tertiary)",
-                      fontFamily: "var(--font-jetbrains-mono)",
-                    }}
-                  >
-                    Hard metrics
-                  </p>
-                  <div className="grid grid-cols-1 gap-2 sm:grid-cols-3">
-                    {project.impact.metrics.map((m) => (
-                      <div
-                        key={m.label}
-                        className="px-3 py-2.5 rounded-lg border"
-                        style={{
-                          background: "var(--accent-dim)",
-                          borderColor: "rgba(0,255,136,0.15)",
-                        }}
-                      >
-                        <p
-                          className="text-base font-bold"
-                          style={{ color: "var(--accent)" }}
-                        >
-                          {m.value}
-                        </p>
-                        <p
-                          className="text-xs mt-0.5"
-                          style={{ color: "var(--text-tertiary)" }}
-                        >
-                          {m.label}
-                        </p>
-                      </div>
-                    ))}
-                  </div>
-                </div>
-
-                {/* Problem */}
-                <div>
-                  <p
-                    className="text-xs font-semibold uppercase tracking-wider mb-1.5"
-                    style={{
-                      color: "var(--text-tertiary)",
-                      fontFamily: "var(--font-jetbrains-mono)",
-                    }}
-                  >
-                    Problem
-                  </p>
-                  <p className="text-sm leading-relaxed" style={{ color: "var(--text-secondary)" }}>
-                    {project.impact.problem}
-                  </p>
-                </div>
-
-                {/* Solution */}
-                <div>
-                  <p
-                    className="text-xs font-semibold uppercase tracking-wider mb-1.5"
-                    style={{
-                      color: "var(--text-tertiary)",
-                      fontFamily: "var(--font-jetbrains-mono)",
-                    }}
-                  >
-                    Solution
-                  </p>
-                  <p className="text-sm leading-relaxed" style={{ color: "var(--text-secondary)" }}>
-                    {project.impact.solution}
-                  </p>
-                </div>
-              </div>
-            </motion.div>
-          ) : (
-            <motion.div
-              key="architecture"
-              id={`panel-${project.id}-architecture`}
-              role="tabpanel"
-              aria-label="System architecture"
-              custom={dir}
-              variants={PANEL_VARIANTS}
-              initial="enter"
-              animate="center"
-              exit="exit"
-              transition={{ duration: 0.18, ease: [0.23, 1, 0.32, 1] }}
-              className="absolute inset-0 px-4 py-5 flex items-center justify-center"
-            >
-              <div className="w-full flex flex-col items-center justify-center gap-3 py-8">
-                <p
-                  className="text-xs uppercase tracking-[0.3em]"
+          {/* External links */}
+          {(project.githubUrl || project.liveUrl) && (
+            <div className="flex items-center gap-2">
+              {project.githubUrl && (
+                <a
+                  href={project.githubUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label={`${project.title} source code on GitHub`}
+                  className="icon-link btn-press flex items-center gap-1.5 px-2.5 py-1.5 rounded-md border"
                   style={{
-                    color: "var(--text-4)",
                     fontFamily: "var(--font-jetbrains-mono)",
+                    fontSize: "0.6rem",
+                    textTransform: "uppercase",
+                    letterSpacing: "0.1em",
                   }}
                 >
-                  TBD
-                </p>
-                <p
-                  className="text-xs"
-                  style={{ color: "var(--text-4)", fontFamily: "var(--font-jetbrains-mono)" }}
+                  <GithubIcon width={11} height={11} />
+                  <span>Code</span>
+                </a>
+              )}
+              {project.liveUrl && (
+                <a
+                  href={project.liveUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label={`${project.title} live site`}
+                  className="icon-link btn-press flex items-center gap-1.5 px-2.5 py-1.5 rounded-md border"
+                  style={{
+                    fontFamily: "var(--font-jetbrains-mono)",
+                    fontSize: "0.6rem",
+                    textTransform: "uppercase",
+                    letterSpacing: "0.1em",
+                  }}
                 >
-                  Architecture diagram coming soon
-                </p>
-              </div>
-            </motion.div>
+                  <ExternalLink size={11} />
+                  <span>Live</span>
+                </a>
+              )}
+            </div>
           )}
-        </AnimatePresence>
+        </div>
+
+        {/* RIGHT — content */}
+        <div className="md:col-span-3" style={{ minWidth: 0 }}>
+
+          {/* Toggle */}
+          <div
+            className="flex items-center gap-1 mb-5"
+            role="tablist"
+            aria-label="Project view toggle"
+          >
+            {(["impact", "architecture"] as const).map((v) => (
+              <button
+                key={v}
+                role="tab"
+                aria-selected={view === v}
+                aria-controls={`panel-${project.id}-${v}`}
+                onClick={() => switchView(v)}
+                className="btn-press flex items-center gap-1.5 px-3 py-1.5 rounded-md"
+                style={{
+                  fontFamily: "var(--font-jetbrains-mono)",
+                  fontSize: "0.65rem",
+                  textTransform: "uppercase",
+                  letterSpacing: "0.1em",
+                  color: view === v ? "var(--text-primary)" : "var(--text-tertiary)",
+                  background: view === v ? "var(--surface-2)" : "transparent",
+                  border: `1px solid ${view === v ? "var(--border-2)" : "transparent"}`,
+                  transition:
+                    "color 150ms var(--ease-out), background 150ms var(--ease-out), border-color 150ms var(--ease-out)",
+                }}
+              >
+                {v === "impact" ? <TrendingUp size={11} /> : <Cpu size={11} />}
+                {v === "impact" ? "Product Impact" : "System Architecture"}
+              </button>
+            ))}
+          </div>
+
+          {/* Panel — mode="wait" so panels don't overlap */}
+          <div style={{ minHeight: "13rem", minWidth: 0 }}>
+            <AnimatePresence custom={dir} mode="wait">
+              {view === "impact" ? (
+                <motion.div
+                  key="impact"
+                  id={`panel-${project.id}-impact`}
+                  role="tabpanel"
+                  aria-label="Product impact"
+                  custom={dir}
+                  variants={PANEL_VARIANTS}
+                  initial="enter"
+                  animate="center"
+                  exit="exit"
+                  transition={{ duration: 0.18, ease: [0.23, 1, 0.32, 1] }}
+                  className="space-y-5"
+                >
+                  {/* Metrics */}
+                  <div>
+                    <p
+                      style={{
+                        fontFamily: "var(--font-jetbrains-mono)",
+                        fontSize: "0.6rem",
+                        textTransform: "uppercase",
+                        letterSpacing: "0.15em",
+                        color: "var(--text-tertiary)",
+                        marginBottom: "0.6rem",
+                      }}
+                    >
+                      Hard metrics
+                    </p>
+                    <div className="flex flex-wrap gap-2">
+                      {project.impact.metrics.map((m) => (
+                        <div
+                          key={m.label}
+                          className="px-3 py-2 rounded-md border"
+                          style={{
+                            background: "var(--accent-dim)",
+                            borderColor: "var(--accent-border)",
+                          }}
+                        >
+                          <p
+                            className="text-sm font-bold"
+                            style={{ color: "var(--accent)" }}
+                          >
+                            {m.value}
+                          </p>
+                          <p
+                            style={{
+                              fontSize: "0.6rem",
+                              marginTop: "0.1rem",
+                              color: "var(--text-tertiary)",
+                              fontFamily: "var(--font-jetbrains-mono)",
+                            }}
+                          >
+                            {m.label}
+                          </p>
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+
+                  {/* Problem */}
+                  <div>
+                    <p
+                      style={{
+                        fontFamily: "var(--font-jetbrains-mono)",
+                        fontSize: "0.6rem",
+                        textTransform: "uppercase",
+                        letterSpacing: "0.15em",
+                        color: "var(--text-tertiary)",
+                        marginBottom: "0.4rem",
+                      }}
+                    >
+                      Problem
+                    </p>
+                    <p className="text-sm leading-relaxed" style={{ color: "var(--text-secondary)" }}>
+                      {project.impact.problem}
+                    </p>
+                  </div>
+
+                  {/* Solution */}
+                  <div>
+                    <p
+                      style={{
+                        fontFamily: "var(--font-jetbrains-mono)",
+                        fontSize: "0.6rem",
+                        textTransform: "uppercase",
+                        letterSpacing: "0.15em",
+                        color: "var(--text-tertiary)",
+                        marginBottom: "0.4rem",
+                      }}
+                    >
+                      Solution
+                    </p>
+                    <p className="text-sm leading-relaxed" style={{ color: "var(--text-secondary)" }}>
+                      {project.impact.solution}
+                    </p>
+                  </div>
+                </motion.div>
+              ) : (
+                <motion.div
+                  key="architecture"
+                  id={`panel-${project.id}-architecture`}
+                  role="tabpanel"
+                  aria-label="System architecture"
+                  custom={dir}
+                  variants={PANEL_VARIANTS}
+                  initial="enter"
+                  animate="center"
+                  exit="exit"
+                  transition={{ duration: 0.18, ease: [0.23, 1, 0.32, 1] }}
+                  className="flex items-start pt-1"
+                >
+                  <p
+                    style={{
+                      fontFamily: "var(--font-jetbrains-mono)",
+                      fontSize: "0.65rem",
+                      textTransform: "uppercase",
+                      letterSpacing: "0.3em",
+                      color: "var(--text-4)",
+                    }}
+                  >
+                    Architecture diagram coming soon
+                  </p>
+                </motion.div>
+              )}
+            </AnimatePresence>
+          </div>
+        </div>
       </div>
     </article>
   );
