@@ -69,14 +69,17 @@ export function LetterField() {
   }, [mode]);
 
   useEffect(() => {
-    const pre = preRef.current;
-    if (!pre) return;
-    const span = document.createElement("span");
-    span.style.cssText = "visibility:hidden;position:absolute;font-size:18px;letter-spacing:4px;font-family:inherit";
-    span.textContent = "A";
-    pre.appendChild(span);
-    charWidthRef.current = span.getBoundingClientRect().width;
-    pre.removeChild(span);
+    const measure = () => {
+      const pre = preRef.current;
+      if (!pre) return;
+      const span = document.createElement("span");
+      span.style.cssText = "visibility:hidden;position:absolute;font-size:18px;letter-spacing:4px;font-family:inherit";
+      span.textContent = "A";
+      pre.appendChild(span);
+      charWidthRef.current = span.getBoundingClientRect().width;
+      pre.removeChild(span);
+    };
+    document.fonts.ready.then(measure);
   }, []);
 
   // Skip animation if already seen this session

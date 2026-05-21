@@ -28,7 +28,7 @@ export default function ProjectShowcase() {
     <section
       id="projects"
       ref={ref}
-      className="px-8 py-24 w-full"
+      className="px-8 py-24 max-w-6xl mx-auto w-full"
       aria-labelledby="projects-heading"
     >
       {/* Section header */}

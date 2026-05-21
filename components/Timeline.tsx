@@ -39,7 +39,7 @@ export default function Timeline() {
     <section
       id="experience"
       ref={ref}
-      className="px-8 py-24 w-full"
+      className="px-8 py-24 max-w-6xl mx-auto w-full"
       aria-labelledby="experience-heading"
     >
       {/* Section header */}
